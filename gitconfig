@@ -1,6 +1,6 @@
 [user]
-    name = Jimmy Charnley Kromann
-    email = jimmy@charnley.dk
+    name = Lars Andersen Bratholm
+    email = larsbratholm@gmail.com
 
 [color]
     diff = auto
@@ -15,12 +15,21 @@
     editor = vim 
     pager = less -q
 
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
 [alias]
-    # lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-    lg = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(yellow)%d%C(reset)' --all
-
-[push]
-    default = simple
-
-[credential]
-    helper = store --file ~/.gitcredentials
+    d = difftool
+[merge]
+    tool = diffconflicts
+[mergetool "diffconflicts"]
+    cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+    trustExitCode = true
+    keepBackup = false
+[difftool "vimdiff"] cmd = vim -f -d -c 'wincmd l' -c 'cd "$GIT_PREFIX"' "$LOCAL" "$REMOTE"
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
