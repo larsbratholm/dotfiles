@@ -2,11 +2,12 @@
 
 """
 
-bindsym Control+Up           exec amixer -q sset Master 2%+ unmute
-bindsym Control+Down         exec amixer -q sset Master 2%- unmute
+bindsym $mod+Up              exec amixer -q sset Master 2%+ unmute
+bindsym $mod+Down            exec amixer -q sset Master 2%- unmute
+bindsym $mod+End             exec amixer -q set Master toggle; exec amixer -q set Headphone unmute; exec amixer -q set Speaker unmute # does not work proberbly
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle; exec amixer -q set Headphone unmute; exec amixer -q set Speaker unmute # does not work proberbly
+bindsym XF86AudioMute        exec amixer -q set Master toggle; exec amixer -q set Headphone unmute; exec amixer -q set Speaker unmute # does not work proberbly
 
 """
 
@@ -27,6 +28,12 @@ def shell(cmd, shell=False):
     output, err = p.communicate()
     return output
 
+def update_sink(sink, change):
+    if change == "mute":
+        shell('pactl set-sink-volume {} 0%'.format(sink))
+    else:
+        shell('pactl set-sink-volume {} {}%'.format(sink, change))
+
 
 if __name__ == "__main__":
 
@@ -43,12 +50,8 @@ if __name__ == "__main__":
     sinks = sinks.split('\n')
 
     if len(sinks) == 2:
-
-        if change == "mute":
-            shell('pactl set-sink-volume 0 0%'.format(sink))
-            quit()
-
-        shell('pactl set-sink-volume 0 {}%'.format(change))
+        sink = sinks[0].split("\t")[0]
+        update_sink(sink, change)
         quit()
 
     pactl_info = shell('pactl info')
@@ -60,7 +63,7 @@ if __name__ == "__main__":
     sink = sink.split()
     sink = sink[0]
 
-    if not "blue" in default_sink:
+    if not "bluez" in default_sink:
         shell('pactl set-default-sink {}'.format(sink))
 
         # Set default sound volume to 30%
