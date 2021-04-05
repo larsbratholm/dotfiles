@@ -97,6 +97,5 @@ else
     else
         export PATH="$CONDA_PREFIX/bin:$PATH"
     fi
-$CONDA_PREFIX activate base
 fi
 unset __conda_setup
