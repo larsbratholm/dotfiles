@@ -1,4 +1,4 @@
-
+SHELL=/bin/bash
 all:
 	./vim_update.sh
 
