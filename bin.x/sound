@@ -34,6 +34,14 @@ def update_sink(sink, change):
     else:
         shell('pactl set-sink-volume {} {}%'.format(sink, change))
 
+def set_default_sink(sink):
+    shell('pactl set-default-sink {}'.format(sink))
+
+    # Set default sound volume to 30%
+    # so it does not blow my head off
+    change = "30"
+
+
 
 if __name__ == "__main__":
 
@@ -64,20 +72,6 @@ if __name__ == "__main__":
     sink = sink[0]
 
     if not "bluez" in default_sink:
-        shell('pactl set-default-sink {}'.format(sink))
+        set_default_sink(sink)
 
-        # Set default sound volume to 30%
-        # so it does not blow my head off
-        change = "30"
-
-    if change == "info":
-        print shell('pactl info')
-        quit()
-
-    if change == "mute":
-        shell('pactl set-sink-volume {} 0%'.format(sink))
-        quit()
-
-    shell('pactl set-sink-volume 0 0%')
-    shell('pactl set-sink-volume {} {}%'.format(sink, change))
-
+    update_sink(sink, change)
