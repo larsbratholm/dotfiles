@@ -6,43 +6,26 @@ general {
     interval = 3
 }
 
-order += "wireless wlp4s0"
-order += "ethernet enp0s31f6"
+order += "wireless _first_"
+order += "ethernet _first_"
 order += "path_exists VPN"
 order += "volume master"
 order += "disk /"
-order += "battery 0"
-order += "cpu_temperature 0"
+#order += "battery 0"
 order += "load"
 order += "tztime date"
-order += "tztime hours"
+order += "tztime est"
+order += "tztime local"
 
-wireless wlan0 {
-    format_up = "(%quality at %essid) %ip"
-    format_down = "wlan0"
+wireless _first_ {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
 }
 
-wireless wlp4s0 {
-    format_up = "(%quality at %essid) %ip"
-    format_down = "wifi "
-}
-
-ethernet enp0s31f6 {
-    # if you use %speed, i3status requires root privileges
-    format_up = "%ip (%speed)"
-    format_down = " lan "
-}
-
-ethernet eth0 {
-    # if you use %speed, i3status requires root privileges
-    format_up = "%ip (%speed)"
-    format_down = "eth0"
-}
-
-ethernet eth1 {
-    # if you use %speed, i3status requires root privileges
-    format_up = "%ip (%speed)"
-    format_down = "eth1"
+ethernet _first_ {
+        # if you use %speed, i3status requires root privileges
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
 }
 
 battery 0 {
@@ -57,16 +40,25 @@ battery 0 {
 }
 
 
-#battery 0 {
-#    format = "%status %percentage %remaining"
-#}
-
 run_watch DHCP {
     pidfile = "/var/run/dhclient*.pid"
 }
 
 run_watch VPN {
     pidfile = "/var/run/vpnc/pid"
+}
+
+tztime date {
+        format = "%Y-%m-%d"
+}
+
+tztime local {
+        format = "%H:%M:%S"
+}
+
+tztime est {
+        timezone = "US/Eastern"
+        format = "EST: %H:%M"
 }
 
 path_exists VPN {
@@ -76,15 +68,8 @@ path_exists VPN {
     format = " vpn "
 }
 
-tztime date {
-    format = " %Y %m %d "
-}
-tztime hours {
-    format = " %H:%M "
-}
-
 load {
-    format = " cpu %1min "
+    format = " %1min "
 }
 
 disk "/" {
@@ -96,8 +81,4 @@ volume master {
     device = "default"
     mixer = "Master"
     mixer_idx = 0
-}
-
-cpu_temperature 0 {
-    format = " %degrees °C "
 }
