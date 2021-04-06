@@ -1,26 +1,8 @@
-# MTS Configuration
-
-# Inspiration
-# - https://github.com/Plonq/dotfiles/blob/master/i3/.config/i3/config
-# - http://kumarcode.com/Colorful-i3/
-# - http://pastebin.com/tQwS1heu
-
-# Modification Keys:
-#
-# shift       Shift_L (0x31),   Shift_R (0x3d)
-# lock        Caps_Lock (0x41)
-# control     Control_L (0x24), Control_R (0x87)
-# mod1        Alt_L (0x3f),     Alt_R (0x88)
-# mod2        Num_Lock (0x4c)
-# mod3        n/a
-# mod4        Super (Windows/Cmd key)
-# mod5        n/a
-
 # set $mod to super key
 set $mod Mod4
 
 # Set Font for Window Titles.
-font xft:mononoki 18
+font xft:mononoki 12
 
 # Close a window
 bindsym $mod+q kill
@@ -31,23 +13,25 @@ bindsym $mod+l exec i3lock -c 000000 -d
 # Lock and suspend
 bindsym $mod+shift+l exec i3lock -c 000000 -d & sudo pm-suspend
 
-# Print Screen = Screenshot
-bindsym Print exec scrot -q 100 ~/img/screenshots/%F-%H-%m-%S-screenshot.png
+# screenshot
+bindsym Print exec gnome-screenshot -i
 
 # Volume up / down / mute
-
-# standard amixer
-# bindsym Control+Up              exec amixer -q sset Master 2%+ unmute
-# bindsym Control+Down            exec amixer -q sset Master 2%- unmute
-# bindsym XF86AudioRaiseVolume    exec amixer -q sset Master 2%+ unmute
-# bindsym XF86AudioLowerVolume    exec amixer -q sset Master 2%- unmute
-# bindsym XF86AudioMute exec amixer -q set Master toggle; exec amixer -q set Headphone unmute; exec amixer -q set Speaker unmute # does not work proberbly
-
-bindsym Control+Up              exec ~/bin/sound "+2"
-bindsym Control+Down            exec ~/bin/sound "-2"
+bindsym $mod+prior            exec ~/bin/sound "+2"
+bindsym $mod+Next             exec ~/bin/sound "-2"
+bindsym $mod+End              exec ~/bin/sound "mute"
 bindsym XF86AudioRaiseVolume    exec ~/bin/sound "+2"
 bindsym XF86AudioLowerVolume    exec ~/bin/sound "-2"
 bindsym XF86AudioMute           exec ~/bin/sound "mute"
+# move workspace to other screen
+mode "movescreen" {
+bindsym Left move workspace to output left
+bindsym Right move workspace to output right
+        # back to normal: Enter or Escape
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+bindsym $mod+m mode "movescreen"
 
 # Hivemind setup
 bindsym Control+Shift+Up        exec ~/bin/hivemind_volume up
@@ -56,6 +40,8 @@ bindsym Control+Shift+Down      exec ~/bin/hivemind_volume down
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 2 # increase screen brightness
 bindsym XF86MonBrightnessDown   exec xbacklight -dec 2 # decrease screen brightness
+bindsym $mod+Shift+Prior   exec xbacklight -inc 2 # increase screen brightness
+bindsym $mod+Shift+Next    exec xbacklight -dec 2 # decrease screen brightness
 
 # Do not focus on window, on mouse hover
 focus_follows_mouse no
@@ -63,20 +49,17 @@ focus_follows_mouse no
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-# bindsym $mod+Return exec gnome-terminal
-# NOTE add +aw for no wordwrap in stdout
-bindsym $mod+Return exec rxvt
+# Disable ctrl+S freeze
+exec stty -ixon
 
-# start a sunray terminal
-bindsym $mod+Shift+Return exec rxvt -e ~/bin/sunray --noclose
+# start a terminal
+bindsym $mod+Return exec gnome-terminal --hide-menubar
 
 # kill focused window
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run -b -fn -misc-*-*-*-*-*-18-*-*-*-*-*-*-*
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec i3-dmenu-desktop
 
 # change focus
 bindsym $mod+Left focus left
@@ -181,22 +164,16 @@ exec --no-startup-id blueman-applet # Start bluetooth manager
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 
-# Enable power-save
-exec --no-startup-id sudo pm-powersave
-exec --no-startup-id sudo powertop --auto-tune
-
-# Reset Caps_Lock as Super
-exec --no-startup-id setxkbmap -option caps:hyper
 
 # Set background color
 exec --no-startup-id xsetroot -solid '#222222'
 
-# Disable bell in xorg
+# Disable pc-speaker in xorg
 exec --no-startup-id xset -b
 
 # Disable window bar
 # Don't worry, window-bar is there for tabs and stack
-for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] border pixel 2
 new_window 1pixel
 
 # Interface                border    title      color
@@ -208,7 +185,6 @@ client.urgent              #2f343a   #900000    #ffffff    #900000
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    position top
     status_command i3status
     colors {
         background #222222
@@ -222,4 +198,3 @@ bar {
         urgent_workspace   #900000 #900000 #ffffff
     }
 }
-
