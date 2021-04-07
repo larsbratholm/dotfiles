@@ -5,3 +5,4 @@ git
 curl
 trash-cli
 apt-file
+texlive-latex-base
