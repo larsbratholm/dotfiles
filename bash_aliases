@@ -10,6 +10,10 @@ alias xp='cat ~/.vbuf | xclip -sel clip'
 alias ll='ls -d */'
 alias l='ls -lrth'
 
+alias gs='git status'
+alias gc='git commit -m'
+alias gp='git push'
+
 # Functions
 function take {
   mkdir $1
