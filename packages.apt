@@ -5,4 +5,6 @@ git
 curl
 trash-cli
 apt-file
-texlive-latex-base
+texlive-latex-recommended
+texlive-fonts-recommended
+textlive-latex-extra
