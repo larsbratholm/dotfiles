@@ -1,3 +1,3 @@
 #!/bin/bash
 
-conda install scikit-learn scipy pytorch-gpu
+conda install scikit-learn scipy pytorch-gpu matplotlib
