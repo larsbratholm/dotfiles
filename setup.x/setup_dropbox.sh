@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# Dependencies
-apt install libpango1.0-0
-
 # Download deb package
-wget -O dropbox_2015_10_28_amd64.deb https://www.dropbox.com/download?dl=packages/debian/dropbox_2015.10.28_amd64.deb
+wget -O $HOME/opt/dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb
 
 # Install dropbox
-dpkg -i dropbox_2015_10_28_amd64.deb
+apt install -y $HOME/opt/dropbox.deb
 
 # Remove installation file
-rm      dropbox_2015_10_28_amd64.deb
+rm $HOME/opt/dropbox.deb
 
+# Dropbox control script
+wget -o $HOME/bin/dropbox https://www.dropbox.com/download?dl=packages/dropbox.py

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/opt/miniconda3.sh
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O $HOME/opt/conda.sh
 
 cd $HOME/opt
 
-bash miniconda3.sh -b -p $HOME/opt/miniconda3
+bash conda.sh -b -p $HOME/opt/conda
 
