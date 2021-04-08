@@ -121,44 +121,9 @@ let g:lightline = {
 " usage: <leader>ig
 Plug 'nathanaelkane/vim-indent-guides'
 
-" keep vim sessions
+" keep vim sessions - not sure if automatic
 Plug 'tpope/vim-obsession'
 
-
-" Write mode
-Plug 'junegunn/goyo.vim'
-let g:goyo_height= '80%'
-let g:goyo_width = '80'
-
-function! s:goyo_enter()
-    silent !tmux set status off
-    " silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-    set noshowmode
-    set noshowcmd
-    set scrolloff=999
-
-    ALEDisable
-    set wrap
-    Goyo 80x100%
-endfunction
-
-function! s:goyo_leave()
-    silent !tmux set status on
-    " silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-    set showmode
-    set showcmd
-    set scrolloff=5
-
-    ALEEnable
-    set nowrap
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-nmap <silent> <leader>w :Goyo<CR>
-
-" On window resize, if goyo is active, do <c-w>= to resize the window
-autocmd VimResized * if exists('#goyo') | exe "normal \<c-w>=" | endif
 
 " Auto ident
 Plug 'ldx/vim-indentfinder'
