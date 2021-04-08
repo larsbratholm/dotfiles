@@ -1,4 +1,3 @@
-" - add fortran?
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -25,45 +24,19 @@ call plug#begin()
 " PlugUpgrade
 " PlugClean!
 
-" css colors
-Plug 'ap/vim-css-color', { 'for': ['css', 'less', 'sass', 'scss', 'stylus', 'vim'] }
-
-" let html tags be close automatic
-Plug 'alvan/vim-closetag'
-
-" bookmarks
-Plug 'MattesGroeger/vim-bookmarks'
-" Add/remove bookmark at current line           mm  :BookmarkToggle
-" Add/edit/remove annotation at current line    mi  :BookmarkAnnotate <TEXT>
-" Jump to next bookmark in buffer               mn  :BookmarkNext
-" Jump to previous bookmark in buffer           mp  :BookmarkPrev
-" Show all bookmarks (toggle)                   ma  :BookmarkShowAll
-" Clear bookmarks in current buffer only        mc  :BookmarkClear
-" Clear bookmarks in all buffers                mx  :BookmarkClearAll
-" Move up bookmark at current line              mkk     :BookmarkMoveUp
-" Move down bookmark at current line            mjj     :BookmarkMoveDown
-" Save all bookmarks to a file                  :BookmarkSave <FILE_PATH>
-" Load bookmarks from a file                    :BookmarkLoad <FILE_PATH>
-" highlight BookmarkSign ctermbg=NONE ctermfg=160
-" highlight BookmarkLine ctermbg=194 ctermfg=NONE
-" let g:bookmark_sign = 'B'
-let g:bookmark_sign = '♥'
+" python folding
+Bundle 'tmhedberg/SimpylFold'
 
 
-" let Vundle manage Vundle
-Plug 'gmarik/vundle'
+" let Plug manage Vundle
+" Plug 'gmarik/vundle'
 
 
-" Tagbar
-Plug 'majutsushi/tagbar'
-
-
-" Supertab
+" Supertab: Use tab for code completion
 " https://github.com/ervandew/supertab
 " Plug 'ervandew/supertab'
 
-" Syntax checker
-" Plug 'vim-syntastic/syntastic'
+" Linting, fixing, completion and more
 Plug 'w0rp/ale'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
@@ -72,7 +45,6 @@ let g:ale_sign_error = 'X'
 " Clear the background colors of ALe
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
-" TODO add fortran 77 support,
 " removed fortran support until i find solution
 let g:ale_linters = {
     \   'fortran': [],
