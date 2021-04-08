@@ -72,13 +72,6 @@ let g:UltiSnipsEditSplit="vertical"
 " Track custom snippets
 " reads ~/.vim/snippets automatic
 
-" CSApprox
-" Makes GVIM themes work in terminals
-" Plug 'vim-scripts/CSApprox'
-" Plug 'dracula/vim'
-Plug 'nanotech/jellybeans.vim'
-
-
 " Theme Plug
 Plug 'flazz/vim-colorschemes'
 Plug 'nanotech/jellybeans.vim'
@@ -89,28 +82,10 @@ Plug 'tomasiser/vim-code-dark'
 " Dependency for a lot of plugins
 Plug 'vim-scripts/L9'
 
-" gitgutter see where the file is changed
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-let g:gitgutter_sign_added = '∙'
-let g:gitgutter_sign_modified = '∙'
-let g:gitgutter_sign_removed = '∙'
-let g:gitgutter_sign_modified_removed = '∙'
-
-" Undo block of git changes
-nmap <leader>gu <Plug>(GitGutterUndoHunk)
-" find next or prev git hunk
-nmap <leader>gn <Plug>(GitGutterNextHunk)
-nmap <leader>gp <Plug>(GitGutterPrevHunk)
-" what changed in this hunk (close with :pclose)
-nmap <leader>gh <Plug>(GitGutterPreviewHunk)
-"au CursorMoved * if gitgutter#hunk#in_hunk(line(".")) | GitGutterPreviewHunk | else | pclose | endif
 
 " Line Numbers
-"set relativenumber
-
-" TODO read up and integrate
-" https://github.com/terryma/vim-multiple-cursorsa
+" https://github.com/myusuf3/numbers.vim
+Bundle 'myusuf3/numbers.vim'
 
 " TComment
 " https://github.com/tomtom/tcomment_vim
@@ -130,29 +105,6 @@ nmap <leader>gh <Plug>(GitGutterPreviewHunk)
 "    gC           :: Comment selected text
 Plug 'tomtom/tcomment_vim'
 
-" Easymotion (find char, f)
-Plug 'easymotion/vim-easymotion'
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_keys = 'qwertasdfgzxcv'
-let g:EasyMotion_use_upper = 0
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_startofline = 0
-map  f <Plug>(easymotion-s)
-xmap f <Plug>(easymotion-s)
-omap f <Plug>(easymotion-t)
-map J <Plug>(easymotion-j)
-map K <Plug>(easymotion-k)
-hi link EasyMotionTarget Todo
-hi link EasyMotionShade  Comment
-hi link EasyMotionTarget2First Todo
-hi link EasyMotionTarget2Second Todo
-hi link EasyMotionIncSearch IncSearch
-hi link EasyMotionIncCursor Search
-
-
-" fzf
-Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 
 " Bottomline
 Plug 'itchyny/lightline.vim'
@@ -164,24 +116,6 @@ let g:lightline = {
 	\ 'separator': { 'left': '', 'right': '' },
 	\ 'subseparator': { 'left': '', 'right': '' }
 	\ }
-
-
-" Use release branch (Recommend)
-" IDE like behavior
-" install coc plugins?
-" - coc-python
-" - coc-pylint
-" - coc-snippets
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gr <Plug>(coc-references)
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
 
 " Indentation lines
 " usage: <leader>ig
