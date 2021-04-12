@@ -13,6 +13,7 @@ alias l='ls -lrth'
 alias gs='git status'
 alias gc='git commit -m'
 alias gp='git push'
+alias ga='git add'
 
 # Functions
 function take {
