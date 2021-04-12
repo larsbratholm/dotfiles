@@ -36,6 +36,7 @@ if test -d "/snap/bin"; then PATH="/snap/bin:$PATH"; fi
 
 # My own bins
 if test -d "$HOME/bin"; then PATH="$HOME/bin:$PATH"; fi
+if test -d "$HOME/bin.x"; then PATH="$HOME/bin.x:$PATH"; fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
