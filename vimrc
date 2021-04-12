@@ -25,7 +25,7 @@ call plug#begin()
 " PlugClean!
 
 " python folding
-Bundle 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 
 
 " let Plug manage Vundle
@@ -85,7 +85,7 @@ Plug 'vim-scripts/L9'
 
 " Line Numbers
 " https://github.com/myusuf3/numbers.vim
-Bundle 'myusuf3/numbers.vim'
+Plug 'myusuf3/numbers.vim'
 
 " TComment
 " https://github.com/tomtom/tcomment_vim
