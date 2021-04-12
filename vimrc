@@ -148,20 +148,6 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
-"
-" nnoremap <Home> g<Home>
-" nnoremap <End> g<End>
-" inoremap <Home> <C-o>g<Home>
-" inoremap <End> <C-o>g<End>
-
-" noremap  <buffer> <silent> <Up>   gk
-" noremap  <buffer> <silent> <Down> gj
-" noremap  <buffer> <silent> <Home> g<Home>
-" noremap  <buffer> <silent> <End>  g<End>
-" inoremap <buffer> <silent> <Up>   <C-o>gk
-" inoremap <buffer> <silent> <Down> <C-o>gj
-" inoremap <buffer> <silent> <Home> <C-o>g<Home>
-" inoremap <buffer> <silent> <End>  <C-o>g<End>
 
 function EnableDisplayWrapping()
   if !&wrap
@@ -192,30 +178,6 @@ function DisableDisplayWrapping()
 endfunction
 
 
-
-" " Peter is going to hate this for sure
-" map i <Up>
-" map j <Left>
-" map k <Down>
-" " swap h and i
-" noremap h i
-"
-" " Window Movement
-" " TODO buggy fix it
-" map <C-i> <C-w>i
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
-" map <C-l> <C-w>l
-
-
-
-" " FILE NAVIGATION
-"
-" Tabs:
-"   gt -> go to next tab
-"   gT -> go to previous tab
-"   nnn gt -> go to nnn tab
-"
 " NOTE: "C-tab", does not work in terminals,
 " because terminals does not support it
 " and will just send "tab" instead.
@@ -233,58 +195,6 @@ nnoremap <C-t>      <Esc>:tabnew<enter>:FZF<CR>
 inoremap <A-left>   <Esc>:tabprevious<CR>i
 inoremap <A-right>  <Esc>:tabnext<CR>i
 inoremap <C-t>      <Esc>:tabnew<enter>:FZF<CR>
-
-" TODO should be GitFiles or something when opening files
-
-" TODO I want to open Buffers, and if not found I want to open GitFiles
-
-" Search open files
-nnoremap <Leader>b :Buffers<cr>
-
-" Search lines in current buffer
-noremap <Leader>s :BLines<cr>
-
-" Open new file
-" :FZF searches all files
-" GitFiles searches git-files
-noremap <leader>f :GitFiles<CR>
-
-function! s:buflist()
-  redir => ls
-  silent ls
-  redir END
-  return split(ls, '\n')
-endfunction
-
-function! s:bufopen(e)
-  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction
-
-nnoremap <silent> <Leader><Enter> :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
-
-
-" Move between open buffers.
-nmap <C-n> :bnext<CR>
-nmap <C-p> :bprev<CR>
-
-
-" TODO add movement via multiple windows
-
-
-
-" These are things that I mistype and want ignored.
-nmap Q  <silent>
-nmap q: <silent>
-nmap K  <silent>
-
-
-"
-nmap ; :Buffers<CR>
 
 
 " ---------------
@@ -338,7 +248,17 @@ set hidden
 
 " Say no to code folding...
 " autocmd BufRead,BufEnter *.css setlocal foldmethod=marker
-set nofoldenable
+" set nofoldenable
+" SimpylFold
+"autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+"autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+let g:SimpylFold_docstring_preview = 1
+
+"
+"" Set folding shortcuts
+nnoremap <space> za
+vnoremap <space> zf
+"
 
 " Disable K looking stuff up
 map K <Nop>
@@ -378,8 +298,6 @@ nmap ^[} :tabprevious<cr>
 imap ^[} <ESC>:tabprevious<cr>
 
 " Indentation
-" set paste
-" set nopaste
 set pastetoggle=<F2> " Press F2 in insert mode for better paste
 set tabstop=4
 set softtabstop=4
@@ -473,11 +391,6 @@ nmap <S-y> :.w! ~/.vbuf<CR>
 nmap <S-p> :r ~/.vbuf<CR>
 
 
-" Fixes common typos
-command W w
-command Q q
-" map <F1> <Esc>
-" imap <F1> <Esc>
 
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -518,9 +431,6 @@ set cmdheight=1
 " Plugs/Plugin Configuration
 " ----------------------------------------
 
-" indentation
-" hi IndentGuidesOdd  ctermbg=black
-" hi IndentGuidesEven ctermbg=darkgrey
 
 " user experience
 
@@ -528,8 +438,6 @@ set cmdheight=1
 
 
 
-" TagBar
-map <leader>l :TagbarToggle<CR>
 
 
 " Numbers
@@ -564,16 +472,6 @@ endfunction
 map <Leader>re :call RenameFile()<cr>
 
 
-" ---------------
-" Home/End
-" ---------------
-" Shortcuts for Home/end because my home/end is position
-" crap on my thinkpad
-" Ctrl+Shift+Left/Right -> Home/End
-nnoremap <C-S-Left> <Home>
-inoremap <C-S-Left> <Home>
-nnoremap <C-S-Right> <End>
-inoremap <C-S-Right> <End>
 
 " ---------------
 " vimdiff
@@ -617,6 +515,7 @@ endif
 
 
 " mouse
+" TODO edit
 set mouse=a " mouse in all modes
 "set mouse=i " mouse insert mode only
 set ttymouse=xterm
