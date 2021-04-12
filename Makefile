@@ -1,7 +1,7 @@
 SHELL=/bin/bash
-all: symlink_clean folders symlink bin_folder packages setup vim
+all: symlink_clean folders symlink bin_folder packages install vim
 
-x: all symlink.x_clean bin.x_folder i3 packages.x setup.x
+x: all symlink.x_clean bin.x_folder i3 packages.x install.x
 
 folders:
 	mkdir -p ~/opt ~/dev ~/tmp ~/.vim ~/.ssh
@@ -20,17 +20,17 @@ symlink:
 	ln -sf `pwd`/inputrc ~/.inputrc
 	ln -sf `pwd`/ssh_config ~/.ssh/config
 
-symlink_clean:
-	rm -f ~/.vimrc ~/.gitconfig  ~/.bashrc ~/.bash_aliases ~/.bash_profile ~/.inputrc ~/.tmux.conf
+symlink_clean: symlink_clean_bin
+	rm -f ~/.vimrc ~/.gitconfig  ~/.bashrc ~/.bash_aliases ~/.bash_profile ~/.inputrc ~/.ssh/config
 
-symlink.x_clean:
+symlink.x_clean: symlink_clean_bin.x
 	rm -f ~/.i3status ~/.i3/config
 
 packages:
-	sudo apt install $(cat `pwd`/packages.apt)
+	sudo apt install -y $(shell cat packages.apt)
 
 packages.x:
-	sudo apt install $(cat `pwd`/packages.apt.x)
+	sudo apt install -y $(shell cat packages.apt.x)
 
 bin_folder:
 	mkdir -p ~/bin
@@ -50,15 +50,25 @@ bin.x_folder:
 		fi; \
 	done
 
-setup:
-	./conda_install.sh
-	./conda_essentials.sh
+symlink_clean_bin:
+	for x in bin/*; do \
+		rm -f ~/$$x;\
+	done
 
-setup.x:
-	./setup_dropbox.sh
-	./setup_mendeley.sh
-	./setup_slack.sh
-	./setup_zoom.sh
+symlink_clean_bin.x:
+	for x in bin.x/*; do \
+		rm -f ~/$$x;\
+	done
+
+install:
+	setup/conda_install.sh
+	setup/conda_essentials.sh
+
+install.x:
+	setup.x/setup_dropbox.sh
+	setup.x/setup_mendeley.sh
+	setup.x/setup_slack.sh
+	setup.x/setup_zoom.sh
 
 vim:
 	./vim_snippets.sh
