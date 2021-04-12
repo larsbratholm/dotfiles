@@ -8,3 +8,4 @@ apt-file
 texlive-latex-recommended
 texlive-fonts-recommended
 texlive-latex-extra
+rsync
