@@ -11,3 +11,4 @@ rm $HOME/opt/dropbox.deb
 
 # Dropbox control script
 wget -o $HOME/bin/dropbox https://www.dropbox.com/download?dl=packages/dropbox.py
+chmod +x $HOME/bin/dropbox

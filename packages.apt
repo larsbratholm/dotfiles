@@ -9,3 +9,4 @@ texlive-latex-recommended
 texlive-fonts-recommended
 texlive-latex-extra
 rsync
+vim.nox
