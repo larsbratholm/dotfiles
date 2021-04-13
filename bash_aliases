@@ -15,6 +15,9 @@ alias gc='git commit -m'
 alias gp='git push'
 alias ga='git add'
 
+# Add trash to rm
+alias rm='trash'
+
 # Functions
 function take {
   mkdir $1

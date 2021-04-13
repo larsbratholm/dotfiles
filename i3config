@@ -20,9 +20,9 @@ bindsym Print exec gnome-screenshot -i
 bindsym $mod+prior            exec ~/bin/sound "+2"
 bindsym $mod+Next             exec ~/bin/sound "-2"
 bindsym $mod+End              exec ~/bin/sound "mute"
-bindsym XF86AudioRaiseVolume    exec ~/bin/sound "+2"
-bindsym XF86AudioLowerVolume    exec ~/bin/sound "-2"
-bindsym XF86AudioMute           exec ~/bin/sound "mute"
+bindsym XF86AudioRaiseVolume  exec ~/bin/sound "+2"
+bindsym XF86AudioLowerVolume  exec ~/bin/sound "-2"
+bindsym XF86AudioMute         exec ~/bin/sound "mute"
 # move workspace to other screen
 mode "movescreen" {
 bindsym Left move workspace to output left
@@ -164,6 +164,8 @@ exec --no-startup-id blueman-applet # Start bluetooth manager
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 
+# Empty trash
+exec --no-startup-id trash-empty 14
 
 # Set background color
 exec --no-startup-id xsetroot -solid '#222222'
