@@ -13,12 +13,7 @@ alias l='ls -lrth'
 alias gs='git status'
 alias gp='git push'
 alias ga='git add'
-
-git_commit() {
-    git commit -m "$@"
-}
-
-alias gc=git_commit
+alias gc='git commit -m'
 
 # Add trash to rm
 alias rm='trash'
