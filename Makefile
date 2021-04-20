@@ -69,6 +69,7 @@ install.x:
 	setup.x/setup_mendeley.sh
 	setup.x/setup_slack.sh
 	setup.x/setup_zoom.sh
+	setup.x/setup_gitkraken.sh
 
 vim:
 	./vim_snippets.sh
