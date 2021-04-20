@@ -102,3 +102,59 @@ fi
 unset __conda_setup
 #Activate
 conda activate base
+
+source $HOME/.bashrc_local
+
+# Reset
+Color_Off="\[\033[0m\]"       # Text Reset
+
+# Regular Colors
+Black="\[\033[0;30m\]"        # Black
+Red="\[\033[0;31m\]"          # Red
+Green="\[\033[0;32m\]"        # Green
+Yellow="\[\033[0;33m\]"       # Yellow
+Blue="\[\033[0;34m\]"         # Blue
+Purple="\[\033[0;35m\]"       # Purple
+Cyan="\[\033[0;36m\]"         # Cyan
+White="\[\033[0;37m\]"        # White
+
+# Various variables you might want for your PS1 prompt instead
+Time12h="\T"
+Time12a="\@"
+PathShort="\w"
+PathFull="\W"
+NewLine="\n"
+Jobs="\j"
+
+export PS1="$Blue\h$Color_Off $Cyan\W$Color_Off"
+
+# If this is on interactive node, change color
+if test ! -z $JOB_ID; then
+    export PS1="$Red\h $Cyan\W$Color_Off"
+fi
+
+if [ -z "$PS1NOGIT" ]
+then
+export PS1="$PS1"'$(git branch &>/dev/null;\
+if [ $? -eq 0 ]; then \
+  echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
+  if [ "$?" -eq "0" ]; then \
+    # @4 - Clean repository - nothing to commit
+    echo "'$Green'"$(__git_ps1 " (%s)"); \
+  else \
+    # @5 - Changes to working tree
+    echo "'$Red'"$(__git_ps1 " {%s}"); \
+  fi)"; \
+fi)'
+
+fi
+
+export PS1=$PS1"$Color_Off \$ "
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac

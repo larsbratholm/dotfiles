@@ -526,3 +526,5 @@ set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 set nobackup nowritebackup
 
+" more tabs
+set tabpagemax=100

@@ -137,11 +137,11 @@ mode "resize" {
     bindsym Left resize shrink left 100 px
     bindsym Shift+Left resize grow left 100 px
 
-    bindsym Down resize shrink down 100 px or 100 ppt
-    bindsym Shift+Down resize grow down 100 px or 100 ppt
+    bindsym Down resize shrink down 100 px
+    bindsym Shift+Down resize grow down 100 px
 
-    bindsym Up resize shrink up 100 px or 100 ppt
-    bindsym Shift+Up resize grow up 100 px or 100 ppt
+    bindsym Up resize shrink up 100 px
+    bindsym Shift+Up resize grow up 100 px
 
     bindsym Right resize shrink right 100 px
     bindsym Shift+Right resize grow right 100 px

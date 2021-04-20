@@ -52,4 +52,7 @@ extract () {
 alias emoji_shrug='echo -n "¯\_(ツ)_/¯" | xclip -selection clipboard'
 alias myip='echo $(curl -s https://api.ipify.org)'
 
+# Force parallel to be on 1 thread
+alias parallel="OMP_NUM_THREADS=1 parallel"
 
+source $HOME/.bash_aliases.local
