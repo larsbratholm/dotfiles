@@ -173,6 +173,14 @@ exec --no-startup-id xsetroot -solid '#222222'
 # Disable pc-speaker in xorg
 exec --no-startup-id xset -b
 
+# Start some applications in specific workspaces
+assign [class="Firefox"] 1
+assign [class="Mendeley"] 9
+assign [class="Slack"] 10
+exec --no-startup-id firefox
+exec --no-startup-id mendeleydesktop
+exec --no-startup-id slack
+
 # Disable window bar
 # Don't worry, window-bar is there for tabs and stack
 for_window [class="^.*"] border pixel 2
