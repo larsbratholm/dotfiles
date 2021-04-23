@@ -26,6 +26,7 @@ call plug#begin()
 
 " python folding
 Plug 'tmhedberg/SimpylFold'
+Plug 'Konfekt/FastFold'
 
 
 " let Plug manage Vundle
