@@ -261,6 +261,9 @@ nnoremap <space> za
 vnoremap <space> zf
 "
 
+" Default fold level
+set foldlevel=2
+
 " Disable K looking stuff up
 map K <Nop>
 

@@ -175,9 +175,11 @@ exec --no-startup-id xset -b
 
 # Start some applications in specific workspaces
 assign [class="Firefox"] 1
+assign [class="GitKraken"] 8
 assign [class="Mendeley"] 9
 assign [class="Slack"] 10
 exec --no-startup-id firefox
+exec --no-startup-id gitkraken
 exec --no-startup-id mendeleydesktop
 exec --no-startup-id slack
 
