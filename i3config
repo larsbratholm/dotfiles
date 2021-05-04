@@ -17,12 +17,12 @@ bindsym $mod+shift+l exec i3lock -c 000000 -d & sudo pm-suspend
 bindsym Print exec gnome-screenshot -i
 
 # Volume up / down / mute
-bindsym $mod+prior            exec ~/bin/sound "+2"
-bindsym $mod+Next             exec ~/bin/sound "-2"
-bindsym $mod+End              exec ~/bin/sound "mute"
-bindsym XF86AudioRaiseVolume  exec ~/bin/sound "+2"
-bindsym XF86AudioLowerVolume  exec ~/bin/sound "-2"
-bindsym XF86AudioMute         exec ~/bin/sound "mute"
+bindsym $mod+Prior            exec ~/bin.x/sound "+2"
+bindsym $mod+Next             exec ~/bin.x/sound "-2"
+bindsym $mod+End              exec ~/bin.x/sound "mute"
+bindsym XF86AudioRaiseVolume  exec ~/bin.x/sound "+2"
+bindsym XF86AudioLowerVolume  exec ~/bin.x/sound "-2"
+bindsym XF86AudioMute         exec ~/bin.x/sound "mute"
 # move workspace to other screen
 mode "movescreen" {
 bindsym Left move workspace to output left
