@@ -20,9 +20,9 @@ bindsym Print exec gnome-screenshot -i
 bindsym $mod+Prior            exec ~/bin.x/sound "+2"
 bindsym $mod+Next             exec ~/bin.x/sound "-2"
 bindsym $mod+End              exec ~/bin.x/sound "mute"
-bindsym XF86AudioRaiseVolume  exec ~/bin.x/sound "+2"
-bindsym XF86AudioLowerVolume  exec ~/bin.x/sound "-2"
-bindsym XF86AudioMute         exec ~/bin.x/sound "mute"
+#bindsym XF86AudioRaiseVolume  exec ~/bin.x/sound "+2"
+#bindsym XF86AudioLowerVolume  exec ~/bin.x/sound "-2"
+#bindsym XF86AudioPlay         exec ~/bin.x/sound "mute"
 # move workspace to other screen
 mode "movescreen" {
 bindsym Left move workspace to output left
