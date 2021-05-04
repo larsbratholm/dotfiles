@@ -41,8 +41,6 @@ def set_default_sink(sink):
     # so it does not blow my head off
     change = "30"
 
-
-
 if __name__ == "__main__":
 
     # shell('notify-send " " "volume changed"', shell=True)
@@ -50,11 +48,11 @@ if __name__ == "__main__":
     args = sys.argv[1:]
 
     if len(args) < 1:
-        print "Not enough parameters"
+        print("Not enough parameters")
 
     change = args[0]
 
-    sinks = shell('pactl list short sinks')
+    sinks = shell('pactl list short sinks').decode("utf8")
     sinks = sinks.split('\n')
 
     if len(sinks) == 2:
