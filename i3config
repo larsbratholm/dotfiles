@@ -159,6 +159,7 @@ bindsym $mod+r mode "resize"
 exec --no-startup-id dropbox start # Start Dropbox
 exec --no-startup-id nm-applet -sm-disable # Start  Network Manager
 exec --no-startup-id blueman-applet # Start bluetooth manager
+exec --no-startup-id /opt/cadmus/cadmus
 
 # Disable Screen saver
 exec --no-startup-id xset s off
