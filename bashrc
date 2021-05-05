@@ -24,7 +24,8 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# Extend $PATH environment
+# Start ssh agent
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
 
 # Pip installed packages
 if test -d "$HOME/.local/bin"; then PATH="$HOME/.local/bin:$PATH"; fi
