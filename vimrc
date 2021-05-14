@@ -520,9 +520,9 @@ endif
 
 " mouse
 " TODO edit
-set mouse=a " mouse in all modes
-"set mouse=i " mouse insert mode only
-set ttymouse=xterm
+"set mouse=a " mouse in all modes
+set mouse=i " mouse insert mode only
+"set ttymouse=xterm
 
 
 " backup
