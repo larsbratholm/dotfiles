@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-all: symlink_clean folders symlink bin_folder packages install vim
+all: symlink_clean folders symlink bin_folder packages install vim gnome_settings
 
 x: all symlink.x_clean bin.x_folder i3 packages.x install.x
 
@@ -76,3 +76,6 @@ vim:
 	./vim_snippets.sh
 	./vim_install.sh
 	./vim_update.sh
+
+gnome_settings:
+	dconf load /org/gnome/terminal/ < gnome_terminal_settings_backup.txt
