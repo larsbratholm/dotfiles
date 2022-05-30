@@ -33,10 +33,6 @@ bindsym Escape mode "default"
 }
 bindsym $mod+m mode "movescreen"
 
-# Hivemind setup
-bindsym Control+Shift+Up        exec ~/bin/hivemind_volume up
-bindsym Control+Shift+Down      exec ~/bin/hivemind_volume down
-
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 2 # increase screen brightness
 bindsym XF86MonBrightnessDown   exec xbacklight -dec 2 # decrease screen brightness
@@ -183,6 +179,9 @@ exec --no-startup-id firefox
 exec --no-startup-id gitkraken
 exec --no-startup-id mendeleydesktop
 exec --no-startup-id slack
+
+# ssh-key fix for gitkraken
+exec --no-startup-id ssh-add -k /home/lab/.ssh/id_rsa
 
 # Disable window bar
 # Don't worry, window-bar is there for tabs and stack
