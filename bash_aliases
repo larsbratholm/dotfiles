@@ -18,6 +18,9 @@ alias gc='git commit -m'
 # Add trash to rm
 alias rm='trash'
 
+# Rename real rm command
+alias rrm="/usr/bin/rm"
+
 # Functions
 function take {
   mkdir $1
@@ -54,5 +57,8 @@ alias myip='echo $(curl -s https://api.ipify.org)'
 
 # Force parallel to be on 1 thread
 alias parallel="OMP_NUM_THREADS=1 parallel"
+
+# Activate local conda env
+alias cact="conda activate .env/"
 
 source $HOME/.bash_aliases.local

@@ -7,3 +7,4 @@ Host *
 
 Include ssh_config.local
 
+ServerAliveInterval 60

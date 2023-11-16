@@ -104,8 +104,6 @@ unset __conda_setup
 #Activate
 conda activate base
 
-source $HOME/.bashrc_local
-
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset
 

@@ -60,7 +60,7 @@ if __name__ == "__main__":
         update_sink(sink, change)
         quit()
 
-    pactl_info = shell('pactl info')
+    pactl_info = shell('pactl info').decode("utf8")
     pactl_info = pactl_info.split('\n')
 
     default_sink = pactl_info[12]
