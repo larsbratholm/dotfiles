@@ -59,6 +59,6 @@ alias myip='echo $(curl -s https://api.ipify.org)'
 alias parallel="OMP_NUM_THREADS=1 parallel"
 
 # Activate local conda env
-alias cact="conda activate .env/"
+alias ca="conda activate .env/"
 
 source $HOME/.bash_aliases.local
