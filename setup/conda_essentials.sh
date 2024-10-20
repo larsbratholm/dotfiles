@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mamba install -y scikit-learn scipy pytorch-gpu matplotlib mypy pylint pre-commit
+mamba install -y numpy optuna-dashboard seaborn scikit-learn scipy pytorch matplotlib pre-commit conda-merge

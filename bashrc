@@ -25,7 +25,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # Start ssh agent
-[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" &>/dev/null
 
 # Pip installed packages
 if test -d "$HOME/.local/bin"; then PATH="$HOME/.local/bin:$PATH"; fi
@@ -86,23 +86,25 @@ fi
 # Don't send me messages
 mesg n
 
-if test -f $HOME/.bashrc_local; then source $HOME/.bashrc_local; fi
+if test -f $HOME/.bashrc.local; then source $HOME/.bashrc.local; fi
 
 # Setup conda generally
-if test -d "$HOME/opt/conda"; then CONDA_PREFIX="$HOME/opt/conda"; fi
-__conda_setup="$('$CONDA_PREFIX/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$CONDA_PREFIX/etc/profile.d/conda.sh" ]; then
-        . "$CONDA_PREFIX/etc/profile.d/conda.sh"
+if test -d "$HOME/opt/conda"; then
+    CONDA_PREFIX="$HOME/opt/conda"
+    __conda_setup="$('$CONDA_PREFIX/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="$CONDA_PREFIX/bin:$PATH"
+        if [ -f "$CONDA_PREFIX/etc/profile.d/conda.sh" ]; then
+            . "$CONDA_PREFIX/etc/profile.d/conda.sh"
+        else
+            export PATH="$CONDA_PREFIX/bin:$PATH"
+        fi
     fi
+    unset __conda_setup
+    #Activate
+    conda activate base
 fi
-unset __conda_setup
-#Activate
-conda activate base
 
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset

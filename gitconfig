@@ -12,7 +12,7 @@
 
 [core]
     excludesfile = ~/.gitignore
-    editor = vim 
+    editor = nvim
     pager = less -q
 
 [diff]
@@ -24,10 +24,10 @@
 [merge]
     tool = diffconflicts
 [mergetool "diffconflicts"]
-    cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+    cmd = diffconflicts nvim $BASE $LOCAL $REMOTE $MERGED
     trustExitCode = true
     keepBackup = false
-[difftool "vimdiff"] cmd = vim -f -d -c 'wincmd l' -c 'cd "$GIT_PREFIX"' "$LOCAL" "$REMOTE"
+[difftool "vimdiff"] cmd = nvim -f -d -c 'wincmd l' -c 'cd "$GIT_PREFIX"' "$LOCAL" "$REMOTE"
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
