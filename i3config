@@ -152,7 +152,7 @@ bindsym $mod+r mode "resize"
 # AUTOSTART
 # automatically starting applications on i3 startup
 
-exec --no-startup-id dropbox start # Start Dropbox
+exec --no-startup-id dropbox start -i # Start Dropbox
 exec --no-startup-id nm-applet -sm-disable # Start  Network Manager
 exec --no-startup-id blueman-applet # Start bluetooth manager
 
