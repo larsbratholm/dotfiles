@@ -8,3 +8,4 @@ evince
 eog
 pavucontrol
 tldr
+trash-cli

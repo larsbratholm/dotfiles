@@ -2,7 +2,7 @@
 # Set standard editor
 export EDITOR=vi
 
-alias vi='vim -p'
+alias vi='nvim -p'
 
 # Copy vim out to xclip
 alias xp='cat ~/.vbuf | xclip -sel clip'
@@ -15,11 +15,14 @@ alias gp='git push'
 alias ga='git add'
 alias gc='git commit -m'
 
-# Add trash to rm
-alias rm='trash'
 
-# Rename real rm command
-alias rrm="/usr/bin/rm"
+if [ -x /usr/bin/trash ]; then
+    # Add trash to rm
+    alias rm='trash'
+
+    # Rename real rm command
+    alias rrm="/usr/bin/rm"
+fi
 
 # Functions
 function take {
@@ -27,7 +30,7 @@ function take {
   cd $1
 }
 
-# Can't remmeber all the different extraction commands
+# Can't remember all the different extraction commands
 extract () {
     if [ -f $1 ] ; then
         case $1 in
@@ -71,7 +74,9 @@ alias myip='echo $(curl -s https://api.ipify.org)'
 # Force parallel to be on 1 thread
 alias parallel="OMP_NUM_THREADS=1 parallel"
 
-# Activate local conda env
+# Activate local conda/poetry env
 alias ca="conda activate .env/"
+alias pa="poetry shell"
 
-source $HOME/.bash_aliases.local
+
+if test -f $HOME/.bash_aliases.local; then . $HOME/.bash_aliases.local; fi

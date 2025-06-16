@@ -1,12 +1,12 @@
 parallel
 python3-dev
+python3-poetry
 dstat
-git
 curl
-trash-cli
 apt-file
 texlive-latex-recommended
 texlive-fonts-recommended
 texlive-latex-extra
 rsync
+neovim
 vim-nox

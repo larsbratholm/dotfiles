@@ -1,10 +1,10 @@
 SHELL=/bin/bash
-all: symlink_clean folders symlink bin_folder packages install vim gnome_terminal_settings
+all: symlink_clean folders symlink bin_folder packages vim
 
-x: all symlink.x_clean bin.x_folder i3 packages.x install.x
+x: all symlink.x_clean bin.x_folder i3 packages.x install_conda install.x gnome_terminal_settings
 
 folders:
-	mkdir -p ~/opt ~/dev ~/tmp ~/.vim ~/.ssh
+	mkdir -p ~/opt ~/dev ~/tmp ~/.ssh ~/.config/nvim
 
 i3:
 	mkdir -p ~/.i3
@@ -12,7 +12,7 @@ i3:
 	ln -sf `pwd`/i3status ~/.i3status.conf
 
 symlink:
-	ln -sf `pwd`/vimrc ~/.vimrc
+	ln -sf `pwd`/vimrc ~/.config/nvim/init.vim
 	ln -sf `pwd`/gitconfig ~/.gitconfig
 	ln -sf `pwd`/bashrc ~/.bashrc
 	ln -sf `pwd`/bash_aliases ~/.bash_aliases
@@ -21,12 +21,13 @@ symlink:
 	ln -sf `pwd`/ssh_config ~/.ssh/config
 
 symlink_clean: symlink_clean_bin
-	rm -f ~/.vimrc ~/.gitconfig  ~/.bashrc ~/.bash_aliases ~/.bash_profile ~/.inputrc ~/.ssh/config
+	rm -f .config/nvim/init.vim ~/.gitconfig  ~/.bashrc ~/.bash_aliases ~/.bash_profile ~/.inputrc ~/.ssh/config
 
 symlink.x_clean: symlink_clean_bin.x
 	rm -f ~/.i3status ~/.i3/config
 
 packages:
+	sudo apt update
 	sudo apt install -y $(shell cat packages.apt)
 
 packages.x:
@@ -60,20 +61,17 @@ symlink_clean_bin.x:
 		rm -f ~/$$x;\
 	done
 
-install:
+install_conda:
 	setup/conda_install.sh
 	setup/conda_essentials.sh
 
 install.x:
 	setup.x/setup_dropbox.sh
-	setup.x/setup_mendeley.sh
 	setup.x/setup_slack.sh
 	setup.x/setup_zoom.sh
 	setup.x/setup_gitkraken.sh
-	#setup.x/setup_cadmus.sh
 
 vim:
-	./vim_snippets.sh
 	./vim_install.sh
 	./vim_update.sh
 

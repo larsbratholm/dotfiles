@@ -155,7 +155,6 @@ bindsym $mod+r mode "resize"
 exec --no-startup-id dropbox start # Start Dropbox
 exec --no-startup-id nm-applet -sm-disable # Start  Network Manager
 exec --no-startup-id blueman-applet # Start bluetooth manager
-exec --no-startup-id /opt/cadmus/cadmus
 
 # Disable Screen saver
 exec --no-startup-id xset s off
@@ -170,14 +169,15 @@ exec --no-startup-id xsetroot -solid '#222222'
 # Disable pc-speaker in xorg
 exec --no-startup-id xset -b
 
+# Set default screen for workspaces
+#workspace 1 output eDP-1
+
 # Start some applications in specific workspaces
 assign [class="Firefox"] 1
-assign [class="GitKraken"] 8
-assign [class="Mendeley"] 9
+assign [class="GitKraken"] 9
 assign [class="Slack"] 10
 exec --no-startup-id firefox
 exec --no-startup-id gitkraken
-exec --no-startup-id mendeleydesktop
 exec --no-startup-id slack
 
 # ssh-key fix for gitkraken
