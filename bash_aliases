@@ -52,6 +52,19 @@ extract () {
     fi
 }
 
+function cd() {
+    # Call the original cd command
+    builtin cd "$@" || return
+
+    # Check if .venv exists in the current directory
+    if [ -d ".venv" ]; then
+        # Activate the virtual environment
+        source ".venv/bin/activate"
+        echo "Activated virtual environment: .venv"
+    fi
+}
+
+
 alias emoji_shrug='echo -n "¯\_(ツ)_/¯" | xclip -selection clipboard'
 alias myip='echo $(curl -s https://api.ipify.org)'
 

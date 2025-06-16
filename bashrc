@@ -95,7 +95,7 @@ if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
     if [ -f "$CONDA_PREFIX/etc/profile.d/conda.sh" ]; then
-        . "$CONDA_PREFIX/etc/profile.d/conda.sh"
+        source "$CONDA_PREFIX/etc/profile.d/conda.sh"
     else
         export PATH="$CONDA_PREFIX/bin:$PATH"
     fi
