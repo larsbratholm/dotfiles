@@ -10,6 +10,13 @@ if !has('gui_running')
   set t_Co=256
 endif
 
+" mouse
+" TODO edit
+"set mouse=a " mouse in all modes
+"set mouse=i " mouse insert mode only
+set mouse=
+"set ttymouse=xterm
+
 
 " ----------------------------------------
 " https://github.com/junegunn/vim-plug
@@ -518,11 +525,6 @@ if &diff
 endif
 
 
-" mouse
-" TODO edit
-"set mouse=a " mouse in all modes
-"set mouse=i " mouse insert mode only
-"set ttymouse=xterm
 
 
 " backup

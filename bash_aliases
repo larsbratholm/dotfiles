@@ -74,9 +74,6 @@ alias myip='echo $(curl -s https://api.ipify.org)'
 # Force parallel to be on 1 thread
 alias parallel="OMP_NUM_THREADS=1 parallel"
 
-# Activate local conda/poetry env
-alias ca="conda activate .env/"
-alias pa="poetry shell"
-
+alias clip="xclip -selection clipboard"
 
 if test -f $HOME/.bash_aliases.local; then . $HOME/.bash_aliases.local; fi

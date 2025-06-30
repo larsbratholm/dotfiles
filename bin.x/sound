@@ -64,12 +64,18 @@ if __name__ == "__main__":
     pactl_info = pactl_info.split('\n')
 
     default_sink = pactl_info[12]
+    default_sink = default_sink.split(":")[-1][1:]
+    for sink in sinks:
+        if default_sink in sink:
+            sink = sink.split()[0]
+            update_sink(sink, change)
+            break
 
-    sink = sinks[-2]
-    sink = sink.split()
-    sink = sink[0]
+    #sink = sinks[-2]
+    #sink = sink.split()
+    #sink = sink[0]
 
-    if not "bluez" in default_sink:
-        set_default_sink(sink)
+    #if not "bluez" in default_sink:
+    #    set_default_sink(sink)
 
-    update_sink(sink, change)
+    #update_sink(sink, change)
