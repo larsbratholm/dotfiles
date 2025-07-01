@@ -28,7 +28,7 @@ fi
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" &>/dev/null
 
 # Pip installed packages
-if test -d "$HOME/.local/bin"; then PATH="$HOME/.local/bin:$PATH"; fi
+if test -d "$HOME/.local/bin"; then export PATH="$HOME/.local/bin:$PATH"; fi
 
 # Global bins
 if test -d "/opt/bin"; then PATH="/opt/bin:$PATH"; fi
