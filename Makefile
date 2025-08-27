@@ -72,8 +72,9 @@ install.x:
 	setup.x/setup_gitkraken.sh
 
 vim:
-	./vim_install.sh
-	./vim_update.sh
+	setup/download_nvim.sh
+	setup/vim_install.sh
+	setup/vim_update.sh
 
 gnome_terminal_settings:
 	dconf load /org/gnome/terminal/ < gnome_terminal_settings.txt

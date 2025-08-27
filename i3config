@@ -34,10 +34,19 @@ bindsym Escape mode "default"
 bindsym $mod+m mode "movescreen"
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp     exec xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 # decrease screen brightness
-bindsym $mod+Shift+Prior   exec xbacklight -inc 5 # increase screen brightness
-bindsym $mod+Shift+Next    exec xbacklight -dec 5 # decrease screen brightness
+#bindsym XF86MonBrightnessUp     exec xbacklight -inc 5 # increase screen brightness
+#bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 # decrease screen brightness
+#bindsym $mod+Shift+Prior   exec xbacklight -inc 5 # increase screen brightness
+#bindsym $mod+Shift+Next    exec xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp     exec sudo brightnessctl set +10%
+bindsym XF86MonBrightnessDown   exec sudo brightnessctl set 10%-
+bindsym $mod+Shift+Prior   exec sudo brightnessctl set +10%
+bindsym $mod+Shift+Next    exec sudo brightnessctl set 10%-
+
+# Change xrandr output
+bindsym $mod+F1    exec autorandr --load laptop
+bindsym $mod+F2    exec autorandr --load widescreen
+
 
 # Do not focus on window, on mouse hover
 focus_follows_mouse no
@@ -152,9 +161,10 @@ bindsym $mod+r mode "resize"
 # AUTOSTART
 # automatically starting applications on i3 startup
 
-exec --no-startup-id dropbox start -i # Start Dropbox
+#exec --no-startup-id dropbox start -i # Start Dropbox
 exec --no-startup-id nm-applet -sm-disable # Start  Network Manager
 exec --no-startup-id blueman-applet # Start bluetooth manager
+exec --no-startup-id /usr/bin/autorandr_launcher
 
 # Disable Screen saver
 exec --no-startup-id xset s off
@@ -173,12 +183,13 @@ exec --no-startup-id xset -b
 #workspace 1 output eDP-1
 
 # Start some applications in specific workspaces
-assign [class="Firefox"] 1
-assign [class="GitKraken"] 9
-assign [class="Slack"] 10
-exec --no-startup-id firefox
-exec --no-startup-id gitkraken
-exec --no-startup-id slack
+# xprop WM_CLASS to discover instances and classes
+assign [class="google-chrome"] 1
+#assign [class="GitKraken"] 9
+assign [instance="teams.microsoft.com"] 10
+exec --no-startup-id google-chrome
+#exec --no-startup-id gitkraken
+exec --no-startup-id gtk-launch teams
 
 # ssh-key fix for gitkraken
 exec --no-startup-id ssh-add -k /home/lab/.ssh/id_rsa

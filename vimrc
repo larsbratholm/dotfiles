@@ -17,7 +17,6 @@ endif
 set mouse=
 "set ttymouse=xterm
 
-
 " ----------------------------------------
 " https://github.com/junegunn/vim-plug
 " ----------------------------------------
@@ -39,11 +38,6 @@ Plug 'Konfekt/FastFold'
 " let Plug manage Vundle
 " Plug 'gmarik/vundle'
 
-
-" Supertab: Use tab for code completion
-" https://github.com/ervandew/supertab
-" Plug 'ervandew/supertab'
-
 " Linting, fixing, completion and more
 Plug 'w0rp/ale'
 let g:ale_lint_on_text_changed = 'never'
@@ -58,6 +52,9 @@ let g:ale_linters = {
     \   'fortran': [],
     \   'python': [],
     \}
+
+" Community Copilot
+Plug 'zbirenbaum/copilot.lua'
 
 
 " underscore is too common a false-positive error
@@ -309,7 +306,6 @@ nmap ^[} :tabprevious<cr>
 imap ^[} <ESC>:tabprevious<cr>
 
 " Indentation
-set pastetoggle=<F2> " Press F2 in insert mode for better paste
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -534,3 +530,46 @@ set nobackup nowritebackup
 
 " more tabs
 set tabpagemax=100
+
+lua << EOF
+-- Copilot
+require("copilot").setup({
+  -- More options: see https://github.com/zbirenbaum/copilot.lua#setup
+  suggestion = { 
+    enabled = true, 
+    auto_trigger = true,
+    accept = false, --"<C-Space>",
+    accept_word = false,
+    accept_line = false,
+    next = false, -- manual mapping in next section
+    prev = false,
+    dismiss = false,
+    },
+  panel = { enabled = true },
+})
+-- Copilot bindings (Insert mode)
+local suggestion = require("copilot.suggestion")
+
+vim.keymap.set("i", "<C-Space>", function()
+    suggestion.accept()
+end, { desc = "Copilot Accept", silent = true })
+
+vim.keymap.set("i", "<C-Down>", function()
+  suggestion.next()
+end, { desc = "Copilot Next Suggestion", silent = true })
+
+vim.keymap.set("i", "<C-Up>", function()
+  suggestion.prev()
+end, { desc = "Copilot Previous Suggestion", silent = true })
+
+vim.keymap.set("i", "<C-l>", function()
+  suggestion.dismiss()
+end, { desc = "Copilot Dismiss Suggestion", silent = true })
+EOF
+
+" Make sure copilot is enabled for all tabs/buffers
+augroup CopilotAutoEnable
+  autocmd!
+  " run on every buffer enter; don't error if Copilot not loaded yet
+  autocmd BufEnter * if exists(':Copilot') | silent! Copilot enable | endif
+augroup END

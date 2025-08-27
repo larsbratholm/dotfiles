@@ -2,7 +2,8 @@
 # Set standard editor
 export EDITOR=vi
 
-alias vi='nvim -p'
+alias vi='nvim.appimage -p'
+alias vim='nvim.appimage -p'
 
 # Copy vim out to xclip
 alias xp='cat ~/.vbuf | xclip -sel clip'

@@ -28,7 +28,7 @@ fi
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" &>/dev/null
 
 # Pip installed packages
-if test -d "$HOME/.local/bin"; then export PATH="$HOME/.local/bin:$PATH"; fi
+if test -d "$HOME/.local/bin"; then PATH="$HOME/.local/bin:$PATH"; fi
 
 # Global bins
 if test -d "/opt/bin"; then PATH="/opt/bin:$PATH"; fi
@@ -159,3 +159,8 @@ case "$TERM" in xterm*|rxvt*)
 *)
     ;;
 esac
+. "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
